@@ -1,0 +1,18 @@
+# Use the official MySQL image
+FROM mysql:latest
+
+# Set the root password
+ENV MYSQL_ROOT_PASSWORD examplepassword
+
+# Create a database
+ENV MYSQL_DATABASE my_database
+
+# Add a user and grant privileges (replace my_user and my_password with your own)
+ENV MYSQL_USER my_user
+ENV MYSQL_PASSWORD my_password
+
+# Copy SQL files into the container to initialize the database (if needed)
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# Expose port 3306 (if not already done in the base image)
+EXPOSE 3306
